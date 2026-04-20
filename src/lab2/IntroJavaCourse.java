@@ -1,45 +1,54 @@
 package lab2;
 
-/**
- * Describe responsibilities here.
- *
- * @author your name goes here
- * @version 1.00
- */
-public class IntroJavaCourse {
+public class IntroJavaCourse implements Course {
 
-    String courseName;
+    private String courseName;
     private String courseNumber;
     private double credits;
-    private String prerequisites;
+    private final String prerequisites;
 
     public IntroJavaCourse(String courseName, String courseNumber) {
-        this.courseName = courseName;
-        this.courseNumber = courseNumber;
+        setCourseName(courseName);
+        setCourseNumber(courseNumber);
+        this.prerequisites = "Introduction to Programming";
     }
 
+    @Override
+    public String getCourseName() {
+        return courseName;
+    }
+
+    @Override
+    public void setCourseName(String courseName) {
+        Course.validateRequiredString(courseName, "course name");
+        this.courseName = courseName;
+    }
+
+    @Override
     public String getCourseNumber() {
         return courseNumber;
     }
 
+    @Override
     public void setCourseNumber(String courseNumber) {
+        Course.validateRequiredString(courseNumber, "course number");
         this.courseNumber = courseNumber;
     }
 
+    @Override
     public double getCredits() {
         return credits;
     }
 
+    @Override
     public void setCredits(double credits) {
+        Course.validateCredits(credits);
         this.credits = credits;
     }
 
+    @Override
     public String getPrerequisites() {
         return prerequisites;
-    }
-
-    public void setPrerequisites(String prerequisites) {
-        this.prerequisites = prerequisites;
     }
 
 }
